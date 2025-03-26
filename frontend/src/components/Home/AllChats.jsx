@@ -37,7 +37,6 @@ export default function AllChats() {
   return (
     <div className="flex flex-col flex-grow p-4">
       <CreateGroupChat />
-
       <div className="bg-white mt-4 rounded-md border border-gray-200 shadow-sm">
         <div className="max-h-[72vh] p-4 overflow-y-auto">
           {allChat?.map((item) => (

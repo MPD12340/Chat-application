@@ -16,18 +16,21 @@ export default function Message({ item }) {
   return (
     <div className={`flex flex-col ${chatAlign} mx-3 my-2`}>
       <div className={`flex gap-2 ${isCurrentUser ? "flex-row-reverse" : ""}`}>
-        {/* Avatar */}
-        <div className="bg-gray-100 rounded-full w-9 h-9 flex items-center justify-center">
-          <img
-            alt="Profile"
-            src={item.sender.pic}
-            className="w-8 h-8 rounded-full"
-          />
+        <div className="bg-gray-100 rounded-full w-9 h-9 flex items-center justify-center text-sm font-medium text-gray-800">
+          {item.sender.name
+            ? item.sender.name.charAt(0)
+            : item.sender.email.charAt(0)}
         </div>
 
-        {/* Message Content */}
         <div className="flex flex-col">
-          {/* Message Bubble */}
+          <span
+            className={`text-xs mb-1 ${
+              isCurrentUser ? "text-gray-500 text-right" : "text-gray-500"
+            }`}
+          >
+            {item.sender.name || item.sender.email}
+          </span>
+
           <div
             className={`p-3 text-sm max-w-xs md:max-w-md lg:max-w-lg break-words rounded-lg ${
               isCurrentUser
@@ -35,20 +38,18 @@ export default function Message({ item }) {
                 : "bg-gray-200 text-gray-800 rounded-tl-none"
             }`}
           >
-            {/* Text Message */}
+
             {item.message && <p>{item.message}</p>}
 
-            {/* Image */}
             {item.image && (
               <img
-                src={`http://localhost:5000/${item.image}`} // Adjust URL based on your server
+                src={`http://localhost:5000/${item.image}`}
                 alt="Chat attachment"
                 className="mt-2 max-w-full rounded-lg"
               />
             )}
           </div>
 
-          {/* Time */}
           <span
             className={`text-xs mt-1 px-1 ${
               isCurrentUser ? "text-gray-500 text-right" : "text-gray-500"
